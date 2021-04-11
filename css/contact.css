@@ -1,0 +1,56 @@
+
+
+/*  ---  Content  ---  */
+
+.form-container {
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+/* - Form - */
+
+form {
+    padding: 50px;
+    border: 1px solid black;
+    box-shadow: 1px 1px 5px black;
+    width: 40vw;
+    min-width: 450px;
+    border-radius: 10px;
+    background-color: rgb(255, 230, 197);
+}
+
+label {
+    font-family: 'Kalam', cursive;
+    margin: 10px;
+    font-size: 20px;
+    text-shadow: 0px 0px px black;
+}
+
+input,
+textarea {
+    font-family: 'Kalam', cursive;
+    margin: 10px;
+    width: 95%;
+    font-size: 18px;
+}
+
+.btn-submit {
+    font-family: 'Kalam', cursive;
+    padding: 5px;
+    width: 30%;
+    color: black;
+    letter-spacing: 2px;
+    text-shadow: 1px 1px 1px black;
+    background-color: rgb(236, 161, 106);
+    box-shadow: 2px 2px 3px black;
+    border: none;
+    border-radius: 3px;
+}
+
+.btn-submit:hover {
+    color: black;
+    box-shadow: 1px 1px 2px black;
+    text-shadow: -1px -1px 1px black;
+
+}
