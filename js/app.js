@@ -2,7 +2,7 @@
 let galleryContainer = document.getElementById('gallery-container');
 const desenClick = document.getElementById('desen');
 const pirogravajClick = document.getElementById('pirogravaj');
-let control = '';
+let control = 0;
 
 // Show 'Desene' Gallery on click
 
@@ -11,6 +11,9 @@ const getImage = () => {fetch('js/desen.json')
 .then(jsonResponse => {
     if (control != 'desen') {
         control = 'desen';
+
+        console.log(control)
+
         galleryContainer.innerHTML = '';
         jsonResponse.forEach(element => {
             let gridPhoto = `<img src="${element.source}">`;
@@ -30,6 +33,9 @@ const getPyrography = () => {fetch('js/pirogravaj.json')
 .then(jsonResponse => {
     if (control != 'pirogravaj') {
         control = 'pirogravaj';
+
+        console.log(control)
+
         galleryContainer.innerHTML = '';
         jsonResponse.forEach(element => {
             let gridPhoto = `<img src="${element.source}">`;
@@ -46,3 +52,14 @@ const getPyrography = () => {fetch('js/pirogravaj.json')
 desenClick.addEventListener('click', getImage);
 pirogravajClick.addEventListener('click', getPyrography);
 
+// --- LightBox ---
+
+let galleryItem = document.querySelectorAll('.gallery-item');
+const lightboxImage = document.querySelector('#lightbox');
+
+const lightBox = () => {
+    console.log('test')
+}
+
+
+galleryItem.forEach(box => box.addEventListener('click', lightBox));
