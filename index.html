@@ -4,48 +4,50 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
-    <script defer src="js/lightBox.js"></script>
-    <script defer src="js/app.js"></script>
-
-    <title>Smeu Dragos - Art</title>
+    <link rel="stylesheet" href="./style.css">
+    <script defer src="app.js"></script>
+    <!-- <script defer src="app-ciorna.js"></script> -->
+    <title>Smeu - Lucrari</title>
 </head>
 <body>
 
     <header>
-        <nav>
+        <nav class="width-container">
             <ul>
-                <li class="logo"><a href="index.html">Smeu Dragos</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="/index.html">Home</a></li>
+                <li id="logo">Smeu Dragos</li>
+                <li><a href="/contact.html">Contact</a></li>
             </ul>
         </nav>
     </header>
 
-
     <main>
-        
-        <div id="gallery-container">
-            <div class="welcome">
-                <h2>Bine ati venit la galeria mea de lucrari</h2>
-                <p>Pentru vizualizare dati click pe una din categori</p>
+        <div id="gallery" class="width-container">
+            <div id="welcome">
+                <h1>Welcome to my artwork gallery.</h1>
+                <h2>Click on one of the categories to browse.</h2>
             </div>
         </div>
-        
     </main>
 
     <section>
-        <ul class="gallery-nav">
-            <li id="desen">Desen</li>
-            <li id="pirogravaj">Pirogravaj</li>
-            <li>Sculptura</li>
+        <ul class="gallery-nav width-container">
+            <li id="drawing">Drawing</li>
+            <li id="pyrography">Pyrography</li>
+            <li id="woodcarving">Woodcarving</li>
         </ul>
     </section>
 
-    <div id="lightbox"><img src="" alt=""></div>
-
     <footer>
-        <p> &#169; 2021 Smeu Dragos</p>
+        <div class="width-container">
+            <p> &#169; 2021 Smeu Dragos</p>
+        </div>
     </footer>
 
+    <div id="lightbox">
+        <img src="./Images/Desene/Ana.jpg" alt="">
+        <p></p>
+    </div>
+    
 </body>
 </html>
