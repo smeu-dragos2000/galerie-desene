@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/contact.css">
-    <script defer src="js/lightBox.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="contact.css">
+
     <script defer src="js/app.js"></script>
 
     <title>Smeu Dragos - Contact</title>
@@ -14,10 +14,11 @@
 <body>
 
     <header>
-        <nav>
+        <nav class="width-container">
             <ul>
-                <li class="logo"><a href="index.html">Smeu Dragos</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="/index.html">Home</a></li>
+                <li id="logo">Smeu Dragos</li>
+                <li><a href="/contact.html">Contact</a></li>
             </ul>
         </nav>
     </header>
@@ -65,8 +66,11 @@
 
 
     <footer>
-        <p> &#169; 2021 Smeu Dragos</p>
-        
+        <div class="width-container">
+            <p> &#169; 2021 Smeu Dragos</p>
+            <button id="btn">Gata</button>
+        </div>
+
     </footer>
 
 </body>
