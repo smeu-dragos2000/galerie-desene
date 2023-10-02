@@ -8,18 +8,6 @@ const scrollToTop = () => {
 smeuDragos.addEventListener('click', scrollToTop);
 
 
-// ---- LightBox ----
-
-let galleryItem = document.querySelectorAll('.gallery-item');
-let lightboxImage = document.querySelector('#lightbox');
-
-const showLightBox = () => { 
-        console.log('test')
-}
-
-galleryItem.forEach(box => box.addEventListener('click', showLightBox));
-
-
 // ---- Gallery Fill ----
 
 let galleryContainer = document.getElementById('gallery');
@@ -29,82 +17,87 @@ const sculpturaClick = document.getElementById('woodcarving');
 let galleryNav = document.querySelector('.gallery-nav');
 let control = 0;
 
-// Show 'Drawing' Gallery on click
 
-const getImage = () => {fetch('desen.json')
+// Show 'Artwork' Gallery on click
+
+const getGallery = (event) => {fetch(`./data/${event}.json`)
 .then (response => response.json())
 .then(jsonResponse => {
-    if (control != 'desen') {
-        control = 'desen';
 
-        desenClick.style.display = 'none';
-        pirogravajClick.style.display = 'block';
-        sculpturaClick.style.display = 'block';
-        galleryNav.style.width = '30%';
 
         galleryContainer.innerHTML = '';
+        let gridItemID = 0;
         jsonResponse.forEach(element => {
-            let gridPhoto = `<img src="${element.source}">`;
+            let gridPhoto = `<img src="${element.sourceThumb}">`;
             let gridTitle = `<p>${element.title}</p>`
-            let gridItem = `<div class="gallery-item">${gridPhoto} ${gridTitle}</div>`;
+            let gridItem = `<div class="gallery-item" id="${gridItemID}">${gridPhoto} ${gridTitle}</div>`;
             galleryContainer.innerHTML += gridItem;
-            
+            console.log(gridItemID)
+            gridItemID++
         });
-    }
-})
+
+        // -- Modal --
+
+        let lightBoxItem = document.querySelectorAll(".gallery-item");
+        let closeButton = document.querySelector("#closeModal");
+        let modalContainer = document.querySelector(".modal-container");
+        let modal = document.querySelector(".myModal");
+
+        const showLightBox = (event) => {
+            let index = event.target.parentElement.id
+            modal.innerHTML = ` <h1 class="modal-title">${jsonResponse[index].title}</h1> <img class="modal-img" src="${jsonResponse[index].source}">`
+            modalContainer.style.display = "flex";
+            console.log("Show!")
+            console.log(index)
+
+            let closeButton = document.querySelector("#closeModal");
+            let nextButton = document.querySelector("#arrow-right");
+            let previousButton = document.querySelector("#arrow-left");
+            const nextSlide = () => {
+                    
+                    if (index >= lightBoxItem.length-1) {
+                        index = 0
+                    }
+                    else {
+                        index++
+                    }
+                    console.log(index)
+                    console.log(lightBoxItem.length-1)
+
+                    modal.innerHTML = ` <h1 class="modal-title">${jsonResponse[index].title}</h1> <img class="modal-img" src="${jsonResponse[index].source}">`
+                    modalContainer.style.display = "flex";
+                }
+
+            const previousSlide = () => {
+                    
+                    if (index <= 0) {
+                        index = lightBoxItem.length-1
+                    }
+                    else {
+                        index--;
+                    }
+                    console.log(index)
+
+                    modal.innerHTML = ` <h1 class="modal-title">${jsonResponse[index].title}</h1> <img class="modal-img" src="${jsonResponse[index].source}">`
+                    modalContainer.style.display = "flex";
+                }
+                nextButton.addEventListener("click", nextSlide);
+                previousButton.addEventListener("click", previousSlide);
+        }
+        const closeLightBox = () => {
+            modal.innerHTML = ``
+            modalContainer.style.display = "none";
+        }
+
+        lightBoxItem.forEach(() => addEventListener("click", showLightBox))
+        closeButton.addEventListener("click", closeLightBox);
+
+    })
 };
 
-// Show 'Pyrography' Gallery on click
+desenClick.addEventListener('click', () => getGallery("desen"));
+pirogravajClick.addEventListener('click', () => getGallery("pirogravaj"));
+sculpturaClick.addEventListener('click', () => getGallery("sculptura"));
 
-const getPyrography = () => {fetch('pirogravaj.json')
-.then (response => response.json())
-.then(jsonResponse => {
-    if (control != 'pirogravaj') {
-        control = 'pirogravaj';
-
-        pirogravajClick.style.display = 'none';
-        desenClick.style.display = 'block';
-        sculpturaClick.style.display = 'block';
-        galleryNav.style.width = '30%';
-
-        galleryContainer.innerHTML = '';
-        jsonResponse.forEach(element => {
-            let gridPhoto = `<img src="${element.source}">`;
-            let gridTitle = `<p>${element.title}</p>`
-            let gridItem = `<div class="gallery-item">${gridPhoto} ${gridTitle}</div>`;
-            galleryContainer.innerHTML += gridItem;
-        });
-    }
-})
-};
-
-// Show 'Woodcarving' Gallery on click ---work in progress
-
-const getWoodcarving = () => {fetch('sculptura.json')
-.then (response => response.json())
-.then (jsonResponse => {
-    if (control != 'sculptura') {
-        control = 'sculptura';
-
-        sculpturaClick.style.display = 'none';
-        pirogravajClick.style.display = 'block';
-        desenClick.style.display = 'block';
-        galleryNav.style.width = '30%';
-
-        galleryContainer.innerHTML = '';
-        jsonResponse.forEach(element => {
-            let gridPhoto = `<img src="${element.source}">`;
-            let gridTitle = `<p>${element.title}</p>`
-            let gridItem = `<div class="gallery-item">${gridPhoto} ${gridTitle}</div>`;
-            galleryContainer.innerHTML += gridItem;
-        });
-    }
-})
-};
-
-desenClick.addEventListener('click', getImage);
-pirogravajClick.addEventListener('click', getPyrography);
-sculpturaClick.addEventListener('click', getWoodcarving);
-
-
+// -----------------------------
 
