@@ -204,6 +204,7 @@ li a:hover {
 }
 .modal-container button {
     border-radius: 5px;
+    cursor: pointer;
 }
 #closeModal {
     position: absolute;
